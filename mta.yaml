@@ -1,0 +1,31 @@
+ID: mta_dummy
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: ui5dummy
+   type: html5
+   path: ui5dummy
+   parameters:
+      disk-quota: 512M
+      memory: 256M
+   build-parameters:
+      builder: grunt
+   requires:
+    - name: uaa_mta_dummy
+    - name: dest_mta_dummy
+
+resources:
+ - name: uaa_mta_dummy
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
+
+ - name: dest_mta_dummy
+   parameters:
+      service-plan: lite
+      service: destination
+   type: org.cloudfoundry.managed-service
+
